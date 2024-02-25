@@ -1,7 +1,7 @@
 package com.john.demo.controller;
 
 
-import com.john.demo.Question;
+import com.john.demo.model.Question;
 import com.john.demo.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,17 @@ public class QuestionController {
     QuestionService questionService;
 
     @GetMapping("allQuestions")
-    public List<Question> getAllQuestions(){
+    public ResponseEntity<List<Question>> getAllQuestions(){
         return questionService.getAllQuestions();
+    }
+
+    @GetMapping("category/{category}")
+    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category){
+        return questionService.getQuestionsByCategory(category);
+    }
+
+    @PostMapping("add")
+    public ResponseEntity<String> addQuestion(@RequestBody Question question){
+        return  questionService.addQuestion(question);
     }
 }
