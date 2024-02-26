@@ -37,6 +37,7 @@ public class QuestionService {
             return new ResponseEntity<>("success",HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
+            d
         }
         return new ResponseEntity<>("error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
