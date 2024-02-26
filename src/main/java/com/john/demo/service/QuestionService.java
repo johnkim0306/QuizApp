@@ -37,8 +37,17 @@ public class QuestionService {
             return new ResponseEntity<>("success",HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
-            d
         }
         return new ResponseEntity<>("error", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    public ResponseEntity<String> deleteQuestion(Integer questionId) {
+        try {
+            questionDao.deleteById(questionId);
+            return new ResponseEntity<>("Question deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Error deleting question", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
